@@ -1,0 +1,81 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.5'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.little.testCenter'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+subprojects {
+	tasks.withType(JavaCompiler) {
+		options.encoding = 'UTF-8'
+	}
+}
+repositories {
+	maven {
+		url 'https://maven.aliyun.com/repository/public/'
+	}
+	maven {
+		url 'https://maven.aliyun.com/repository/apache-snapshots/'
+	}
+	maven {
+		url 'https://maven.aliyun.com/repository/google/'
+	}
+	mavenCentral()
+}
+
+dependencies {
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'org.springframework.boot'
+
+
+	repositories {
+		maven {
+			url 'https://maven.aliyun.com/repository/public/'
+		}
+		maven {
+			url 'https://maven.aliyun.com/repository/apache-snapshots/'
+		}
+		maven {
+			url 'https://maven.aliyun.com/repository/google/'
+		}
+		mavenCentral()
+	}
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		implementation group: 'javax.inject', name: 'javax.inject', version: '1'
+		implementation 'org.apache.commons:commons-lang3:3.12.0'
+	}
+
+	tasks.named('compileJava') {
+		inputs.files(tasks.named('processResources'))
+	}
+	subprojects {
+		tasks.withType(JavaCompiler) {
+			options.encoding = 'UTF-8'
+		}
+	}
+}

@@ -1,0 +1,21 @@
+pluginManagement {
+    repositories {
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/apache-snapshots/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/google/'
+        }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'testCenter'
+include 'common'
+include 'task-runner'
+include 'within-web'
+include 'core'
+
