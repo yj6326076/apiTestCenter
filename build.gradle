@@ -33,13 +33,15 @@ repositories {
 }
 
 dependencies {
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
 
-allprojects {
+subprojects {
 	apply plugin: 'java'
 	apply plugin: 'idea'
 	apply plugin: 'io.spring.dependency-management'
